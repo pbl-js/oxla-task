@@ -1,8 +1,9 @@
 import { mockData } from '@/mockData';
-import Image from 'next/image';
-import { Test } from './_components/test';
+import { RandomImageWidget } from './_components/RandomImageWidget';
 
-type RandomPhoto = {
+import { RandomPhotoButtons } from './_components/RandomPhotoButtons';
+
+export type ApodPhotoData = {
   copyright: string;
   date: string;
   explanation: string;
@@ -13,7 +14,7 @@ type RandomPhoto = {
   url: string;
 };
 
-async function getRandomPhoto(): Promise<RandomPhoto[]> {
+async function getRandomPhoto(): Promise<ApodPhotoData[]> {
   const res = await fetch(
     'https://api.nasa.gov/planetary/apod?' +
       new URLSearchParams({
@@ -21,7 +22,7 @@ async function getRandomPhoto(): Promise<RandomPhoto[]> {
         api_key: process.env.API_KEY as string,
         count: '1',
       }),
-    { next: { tags: ['randomPhoto'] } }
+    { cache: 'no-cache' }
   );
 
   if (!res.ok) {
@@ -36,22 +37,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col items-center gap-6">
-      <Test randomImage={randomPhoto} />
-      <article className="flex flex-col  bg-bgSecondary rounded-md">
-        <header className="py-2 px-4">
-          <h2 className="font-semibold text-lg">{randomPhoto.title}</h2>
-          <p>{randomPhoto.explanation}</p>
-        </header>
-        <Image className="w-full" alt="test" src={randomPhoto.url} width={1000} height={300} />
-        <div className="py-2 px-4 flex justify-between">
-          <div>{`Author: ${randomPhoto.copyright || 'Unknown'}`}</div>
-          <div>{randomPhoto.date}</div>
-        </div>
-      </article>
-      <div className="flex flex-row gap-2">
-        <button className="bg-actionSecondary py-2 px-6 rounded-md font-semibold">Zapisz</button>
-        <button className="bg-actionSecondary py-2 px-6 rounded-md font-semibold">Następne</button>
-      </div>
+      <RandomImageWidget randomPhoto={randomPhoto} />
     </div>
   );
 }
