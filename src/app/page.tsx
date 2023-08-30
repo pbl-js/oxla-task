@@ -1,4 +1,33 @@
-export default function Home() {
+import { mockData } from '@/mockData';
+
+type GetRandomPhotoResponse = {
+  hdurl: string;
+  media_type: string;
+  service_version: string;
+  title: string;
+  url: string;
+};
+
+async function getRandomPhoto(): Promise<GetRandomPhotoResponse | undefined> {
+  const res = await fetch(
+    'https://api.nasa.gov/planetary/apod?' +
+      new URLSearchParams({
+        // TODO: remove assertion
+        api_key: process.env.API_KEY as string,
+        count: '1',
+      })
+  );
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
+
+export default async function Home() {
+  const siema = await getRandomPhoto();
+
   return (
     <div className="flex flex-col items-center gap-6 p-4">
       <article className="flex flex-col min-w-[240px] max-w-[540px] bg-bgSecondary rounded-md">
