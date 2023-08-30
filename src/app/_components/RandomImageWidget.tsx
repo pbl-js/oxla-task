@@ -30,7 +30,7 @@ export const RandomImageWidget = ({ randomPhoto }: RandomImageWidgetProps) => {
         <Image className="w-full" alt="test" src={randomPhoto.url} width={540} height={500} />
         <div className="py-2 px-4 flex justify-between">
           <div>{`Author: ${randomPhoto.copyright || 'Unknown'}`}</div>
-          <div>{randomPhoto.date}</div>
+          <div className="whitespace-nowrap">{randomPhoto.date}</div>
         </div>
       </article>
       <div className="flex flex-row gap-2">

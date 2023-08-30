@@ -1,3 +1,5 @@
-export const mockData = {
-  apodUniqueHistory: [],
+import { ApodPhotoData } from './app/page';
+
+export const mockData: { appUniqueHistory: ApodPhotoData[] } = {
+  appUniqueHistory: [],
 };
