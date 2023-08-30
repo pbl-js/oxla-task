@@ -1,6 +1,11 @@
 import { mockData } from '@/mockData';
+import Image from 'next/image';
+import { Test } from './_components/test';
 
-type GetRandomPhotoResponse = {
+type RandomPhoto = {
+  copyright: string;
+  date: string;
+  explanation: string;
   hdurl: string;
   media_type: string;
   service_version: string;
@@ -8,14 +13,15 @@ type GetRandomPhotoResponse = {
   url: string;
 };
 
-async function getRandomPhoto(): Promise<GetRandomPhotoResponse | undefined> {
+async function getRandomPhoto(): Promise<RandomPhoto[]> {
   const res = await fetch(
     'https://api.nasa.gov/planetary/apod?' +
       new URLSearchParams({
         // TODO: remove assertion
         api_key: process.env.API_KEY as string,
         count: '1',
-      })
+      }),
+    { next: { tags: ['randomPhoto'] } }
   );
 
   if (!res.ok) {
@@ -26,35 +32,20 @@ async function getRandomPhoto(): Promise<GetRandomPhotoResponse | undefined> {
 }
 
 export default async function Home() {
-  const siema = await getRandomPhoto();
+  const [randomPhoto] = await getRandomPhoto();
 
   return (
     <div className="flex flex-col items-center gap-6">
+      <Test randomImage={randomPhoto} />
       <article className="flex flex-col  bg-bgSecondary rounded-md">
         <header className="py-2 px-4">
-          <h2 className="font-semibold text-lg">Full Moons of August</h2>
-          <p>
-            Near perigee, the closest point in its almost moonthly orbit, a Full Moon rose as the
-            Sun set on August 1. Its brighter than average lunar disk was captured in this dramatic
-            moonrise sequence over dense cloud banks along the eastern horizon from Ragusa, Sicily.
-            Illuminating night skies around planet Earth it was the second supermoon of 2023. Yet
-            again near perigee, the third supermoon of 2023 will also shine on an August night.
-            Rising as the Sun sets tonight this second Full Moon in August will be known to some as
-            a Blue Moon, even though scattered sunlight gives the lunar disk a reddened hue. Defined
-            as the second full moon in a calendar month, blue moons occur only once every 2 or 3
-            years. That's because lunar phases take 29.5 days, almost a calendar month, to go
-            through a complete cycle. Tonight an August Blue Moon will find itself beside bright
-            planet Saturn.
-          </p>
+          <h2 className="font-semibold text-lg">{randomPhoto.title}</h2>
+          <p>{randomPhoto.explanation}</p>
         </header>
-        <img
-          className="w-full"
-          alt="test"
-          src="https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=1xw:0.84415xh;center,top"
-        />
+        <Image className="w-full" alt="test" src={randomPhoto.url} width={1000} height={300} />
         <div className="py-2 px-4 flex justify-between">
-          <div>Paweł Miłćzak</div>
-          <div>30/04/2019</div>
+          <div>{`Author: ${randomPhoto.copyright || 'Unknown'}`}</div>
+          <div>{randomPhoto.date}</div>
         </div>
       </article>
       <div className="flex flex-row gap-2">
