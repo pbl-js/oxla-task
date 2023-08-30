@@ -29,8 +29,8 @@ export default async function Home() {
   const siema = await getRandomPhoto();
 
   return (
-    <div className="flex flex-col items-center gap-6 p-4">
-      <article className="flex flex-col min-w-[240px] max-w-[540px] bg-bgSecondary rounded-md">
+    <div className="flex flex-col items-center gap-6">
+      <article className="flex flex-col  bg-bgSecondary rounded-md">
         <header className="py-2 px-4">
           <h2 className="font-semibold text-lg">Full Moons of August</h2>
           <p>
