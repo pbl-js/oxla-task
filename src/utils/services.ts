@@ -1,5 +1,13 @@
 import { ApodPhotoData } from '@/app/page';
+import { mockData } from '@/mockData';
 import { toast } from 'react-toastify';
+import { delayer } from './delayer';
+
+export const getFavorites = async () => {
+  const favorites = mockData.favorites;
+  await delayer();
+  return favorites;
+};
 
 export const savePhoto = async (photoData: ApodPhotoData) => {
   const res = await fetch('http://localhost:3000/api', {
@@ -11,4 +19,22 @@ export const savePhoto = async (photoData: ApodPhotoData) => {
 
   const toastMessage = await res.text();
   toast(toastMessage, { type: 'error' });
+};
+
+export const getRandomPhoto = async (): Promise<ApodPhotoData[]> => {
+  const res = await fetch(
+    'https://api.nasa.gov/planetary/apod?' +
+      new URLSearchParams({
+        // TODO: remove assertion
+        api_key: process.env.API_KEY as string,
+        count: '1',
+      }),
+    { cache: 'no-cache' }
+  );
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
 };

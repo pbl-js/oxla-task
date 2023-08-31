@@ -1,4 +1,5 @@
 import { mockData } from '@/mockData';
+import { getRandomPhoto } from '@/utils/services';
 import { RandomImageWidget } from './_components/RandomImageWidget';
 
 import { RandomPhotoButtons } from './_components/RandomPhotoButtons';
@@ -13,24 +14,6 @@ export type ApodPhotoData = {
   title: string;
   url: string;
 };
-
-async function getRandomPhoto(): Promise<ApodPhotoData[]> {
-  const res = await fetch(
-    'https://api.nasa.gov/planetary/apod?' +
-      new URLSearchParams({
-        // TODO: remove assertion
-        api_key: process.env.API_KEY as string,
-        count: '1',
-      }),
-    { cache: 'no-cache' }
-  );
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
 
 export default async function Home() {
   const [randomPhoto] = await getRandomPhoto();
