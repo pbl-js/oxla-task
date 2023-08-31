@@ -1,6 +1,6 @@
 import { mockData } from '@/mockData';
+import { ApodPhotoData } from '@/utils/types';
 import { NextRequest, NextResponse } from 'next/server';
-import { ApodPhotoData } from '../page';
 
 export async function POST(request: NextRequest) {
   // TODO: Add schema validation with zod

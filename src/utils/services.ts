@@ -1,7 +1,7 @@
-import { ApodPhotoData } from '@/app/page';
 import { mockData } from '@/mockData';
 import { toast } from 'react-toastify';
 import { delayer } from './delayer';
+import { ApodPhotoData } from './types';
 
 export const getFavorites = async () => {
   const favorites = mockData.favorites;

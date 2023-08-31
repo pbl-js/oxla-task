@@ -1,7 +1,7 @@
 'use client';
 
-import { ApodPhotoData } from '@/app/page';
 import { PhotoPost } from '@/components/PhotoPost';
+import { ApodPhotoData } from '@/utils/types';
 import React from 'react';
 
 export type FavoriteProps = {

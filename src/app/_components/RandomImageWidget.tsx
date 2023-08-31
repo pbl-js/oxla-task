@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useState, useTransition } from 'react';
-import { ApodPhotoData } from '../page';
 import Image from 'next/image';
 import { RandomPhotoButtons } from './RandomPhotoButtons';
 import { useRouter } from 'next/navigation';
 import { RandomImageLoading } from '../../components/RandomImageLoading';
 import { PhotoPost } from '@/components/PhotoPost';
 import { savePhoto } from '@/utils/services';
+import { ApodPhotoData } from '@/utils/types';
 
 export type RandomImageWidgetProps = { randomPhoto: ApodPhotoData };
 
