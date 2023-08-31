@@ -1,3 +1,5 @@
+import { RandomImageLoading } from '../../components/RandomImageLoading';
+
 export default function FavoritesLoading() {
-  return <div>Favorite loading</div>;
+  return <RandomImageLoading />;
 }

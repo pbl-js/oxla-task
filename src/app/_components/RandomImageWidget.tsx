@@ -5,7 +5,7 @@ import { ApodPhotoData } from '../page';
 import Image from 'next/image';
 import { RandomPhotoButtons } from './RandomPhotoButtons';
 import { useRouter } from 'next/navigation';
-import { RandomImageLoading } from './RandomImageLoading';
+import { RandomImageLoading } from '../../components/RandomImageLoading';
 import { PhotoPost } from '@/components/PhotoPost';
 import { savePhoto } from '@/utils/services';
 
