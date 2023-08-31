@@ -1,7 +1,7 @@
 'use client';
 
+import { ApodPhotoData } from '@/utils/types';
 import React from 'react';
-import { ApodPhotoData } from '../page';
 
 type RandomPhotoButtonsProps = {
   randomPhoto: ApodPhotoData;
@@ -20,13 +20,13 @@ export const RandomPhotoButtons = ({
         onClick={handleSavePhoto}
         className="bg-actionSecondary py-2 px-6 rounded-md font-semibold"
       >
-        Zapisz
+        Save
       </button>
       <button
         onClick={handleNextPhoto}
         className="bg-actionSecondary py-2 px-6 rounded-md font-semibold"
       >
-        Następne
+        Next photo
       </button>
     </>
   );
