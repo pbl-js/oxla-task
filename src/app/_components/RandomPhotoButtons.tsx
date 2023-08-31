@@ -7,12 +7,21 @@ type RandomPhotoButtonsProps = {
   randomPhoto: ApodPhotoData;
   isLoading: boolean;
   handleNextPhoto: () => void;
+  handleSavePhoto: () => Promise<void>;
 };
 
-export const RandomPhotoButtons = ({ handleNextPhoto }: RandomPhotoButtonsProps) => {
+export const RandomPhotoButtons = ({
+  handleNextPhoto,
+  handleSavePhoto,
+}: RandomPhotoButtonsProps) => {
   return (
     <>
-      <button className="bg-actionSecondary py-2 px-6 rounded-md font-semibold">Zapisz</button>
+      <button
+        onClick={handleSavePhoto}
+        className="bg-actionSecondary py-2 px-6 rounded-md font-semibold"
+      >
+        Zapisz
+      </button>
       <button
         onClick={handleNextPhoto}
         className="bg-actionSecondary py-2 px-6 rounded-md font-semibold"

@@ -10,7 +10,7 @@ export type FavoriteProps = {
 
 export const FavoritesWidget = ({ favorites }: FavoriteProps) => {
   return (
-    <div className="flex w-full">
+    <div className="flex flex-col gap-5">
       {favorites.map((favorite) => (
         <PhotoPost key={favorite.url} photo={favorite} />
       ))}
