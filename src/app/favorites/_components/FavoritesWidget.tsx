@@ -1,6 +1,7 @@
 'use client';
 
 import { ApodPhotoData } from '@/app/page';
+import { PhotoPost } from '@/components/PhotoPost';
 import React from 'react';
 
 export type FavoriteProps = {
@@ -10,8 +11,8 @@ export type FavoriteProps = {
 export const FavoritesWidget = ({ favorites }: FavoriteProps) => {
   return (
     <div className="flex w-full">
-      {favorites.map((el) => (
-        <div key={el.url}>{el.url}</div>
+      {favorites.map((favorite) => (
+        <PhotoPost key={favorite.url} photo={favorite} />
       ))}
     </div>
   );
