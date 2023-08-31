@@ -5,7 +5,7 @@ import { RandomImageWidget } from './_components/RandomImageWidget';
 import { RandomPhotoButtons } from './_components/RandomPhotoButtons';
 
 export default async function Home() {
-  const [randomPhoto] = await getRandomPhoto();
+  const randomPhoto = await getRandomPhoto();
 
   return (
     <div className="flex flex-col items-center gap-6">

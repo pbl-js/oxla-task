@@ -1,4 +1,4 @@
-import { ApodPhotoData } from './app/page';
+import { ApodPhotoData } from './utils/types';
 
 export const mockData: { appUniqueHistory: ApodPhotoData[]; favorites: ApodPhotoData[] } = {
   appUniqueHistory: [],
