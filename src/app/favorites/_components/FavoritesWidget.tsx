@@ -4,8 +4,7 @@ import { NoResults } from '@/components/NoResults';
 import { PhotoPost } from '@/components/PhotoPost';
 import { RandomImageLoading } from '@/components/RandomImageLoading';
 import { useAppPhotoData } from '@/hooks/useAppPhotoData';
-import { ApodPhotoData } from '@/utils/types';
-import React, { useState } from 'react';
+import React from 'react';
 
 export const FavoritesWidget = () => {
   const { data, loading } = useAppPhotoData();

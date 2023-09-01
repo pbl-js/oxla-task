@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState, useTransition } from 'react';
-import Image from 'next/image';
+import React, { useTransition } from 'react';
 import { RandomPhotoButtons } from './RandomPhotoButtons';
 import { useRouter } from 'next/navigation';
 import { RandomImageLoading } from '../../components/RandomImageLoading';

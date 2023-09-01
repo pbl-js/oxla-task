@@ -1,5 +1,3 @@
-import { NoResults } from '@/components/NoResults';
-import { getFavorites } from '@/utils/services';
 import { FavoritesWidget } from './_components/FavoritesWidget';
 
 export default async function FavoritesPage() {
