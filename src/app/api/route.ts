@@ -14,7 +14,10 @@ export async function POST(request: NextRequest) {
 
   // We can pass entire object safely because we validated it by zod
   mockData.favorites.push(requestBody);
-  console.log('SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS', mockData.favorites);
 
   return new NextResponse(undefined, { status: 200 });
+}
+
+export async function GET() {
+  return NextResponse.json(mockData.favorites);
 }

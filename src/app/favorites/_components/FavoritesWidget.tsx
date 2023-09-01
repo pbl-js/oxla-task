@@ -1,17 +1,22 @@
 'use client';
 
+import { NoResults } from '@/components/NoResults';
 import { PhotoPost } from '@/components/PhotoPost';
+import { RandomImageLoading } from '@/components/RandomImageLoading';
+import { useAppPhotoData } from '@/hooks/useAppPhotoData';
 import { ApodPhotoData } from '@/utils/types';
-import React from 'react';
+import React, { useState } from 'react';
 
-export type FavoriteProps = {
-  favorites: ApodPhotoData[];
-};
+export const FavoritesWidget = () => {
+  const { data, loading } = useAppPhotoData();
 
-export const FavoritesWidget = ({ favorites }: FavoriteProps) => {
+  if (loading) return <RandomImageLoading />;
+
+  if (data?.length === 0) return <NoResults />;
+
   return (
     <div className="flex flex-col gap-5">
-      {favorites.map((favorite) => (
+      {data?.map((favorite) => (
         <PhotoPost key={favorite.url} photo={favorite} />
       ))}
     </div>

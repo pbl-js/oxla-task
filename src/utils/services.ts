@@ -2,13 +2,11 @@ import { mockData } from '@/mockData';
 import { toast } from 'react-toastify';
 import { FIRST_APOD_DATE } from './consts';
 import { formatDate, getTodayDate, randomDateInRange } from './date';
-import { delayer } from './delayer';
 
 import { ApodPhotoData } from './types';
 
 export const getFavorites = async () => {
   const favorites = mockData.favorites;
-  await delayer();
   return favorites;
 };
 
@@ -21,6 +19,7 @@ export const savePhoto = async (photoData: ApodPhotoData) => {
   if (res.status === 200) return toast('Photo saved', { type: 'success' });
 
   const toastMessage = await res.text();
+
   toast(toastMessage, { type: 'error' });
 };
 
@@ -48,7 +47,8 @@ export const getRandomPhoto = async (): Promise<ApodPhotoData> => {
           // TODO: remove assertion
           api_key: process.env.API_KEY as string,
           date,
-        })
+        }),
+      { cache: 'no-cache' }
     );
 
     if (!res.ok) {
